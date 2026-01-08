@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Filters from './components/Filters';
@@ -169,6 +170,7 @@ const App: React.FC = () => {
         <Navbar onNavigate={handleNavigate} />
         <PricingPage />
         <Footer onNavigate={handleNavigate} />
+        <Analytics />
       </div>
     );
   }
@@ -179,6 +181,7 @@ const App: React.FC = () => {
         <Navbar onNavigate={handleNavigate} />
         <DocumentationPage />
         <Footer onNavigate={handleNavigate} />
+        <Analytics />
       </div>
     );
   }
@@ -194,6 +197,7 @@ const App: React.FC = () => {
             onBack={() => setCurrentView('home')}
           />
           <Footer onNavigate={handleNavigate} />
+          <Analytics />
         </div>
       );
     }
@@ -354,6 +358,7 @@ const App: React.FC = () => {
         </div>
       )}
 
+      <Analytics />
     </div>
   );
 };
