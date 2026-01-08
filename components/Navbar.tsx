@@ -2,7 +2,7 @@ import React from 'react';
 import { Menu, Zap } from 'lucide-react';
 
 interface NavbarProps {
-  onNavigate: (view: 'home' | 'pricing' | 'documentation') => void;
+  onNavigate: (view: 'home' | 'pricing' | 'documentation' | 'categories') => void;
   theme?: 'light' | 'dark';
 }
 
@@ -16,7 +16,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, theme = 'dark' }) => {
   const hoverColor = isDark ? 'hover:text-slate-200' : 'hover:text-indigo-600';
   const logoSubTextOpacity = isDark ? 'opacity-80' : 'opacity-60 text-slate-500';
 
-  const handleMobileNavigate = (view: 'home' | 'pricing' | 'documentation') => {
+  const handleMobileNavigate = (view: 'home' | 'pricing' | 'documentation' | 'categories') => {
     onNavigate(view);
     setIsOpen(false);
   };
@@ -36,6 +36,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, theme = 'dark' }) => {
 
         <div className={`hidden md:flex items-center space-x-8 text-sm font-medium ${subTextColor}`}>
           <button onClick={() => onNavigate('home')} className={`${hoverColor} transition-colors`}>Workflows</button>
+          <button onClick={() => onNavigate('categories')} className={`${hoverColor} transition-colors`}>Categories</button>
           <button onClick={() => onNavigate('pricing')} className={`${hoverColor} transition-colors`}>Pricing</button>
           <button onClick={() => onNavigate('documentation')} className={`${hoverColor} transition-colors`}>Documentation</button>
         </div>
@@ -63,6 +64,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, theme = 'dark' }) => {
           <div className="fixed inset-0 z-40 bg-white md:hidden animate-in slide-in-from-top-10 fade-in duration-200">
             <div className="flex flex-col items-center justify-center h-full space-y-8 p-8">
               <button onClick={() => handleMobileNavigate('home')} className="text-2xl font-bold text-slate-900">Workflows</button>
+              <button onClick={() => handleMobileNavigate('categories')} className="text-2xl font-bold text-slate-900">Categories</button>
               <button onClick={() => handleMobileNavigate('pricing')} className="text-2xl font-bold text-slate-900">Pricing</button>
               <button onClick={() => handleMobileNavigate('documentation')} className="text-2xl font-bold text-slate-900">Documentation</button>
               <hr className="w-full max-w-xs border-slate-100" />

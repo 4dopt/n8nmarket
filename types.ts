@@ -30,6 +30,7 @@ export enum Category {
 export interface Workflow {
   id: string;
   title: string;
+  slug: string;
   description: string;
   price: number; // 0 for free
   tier: PricingTier;

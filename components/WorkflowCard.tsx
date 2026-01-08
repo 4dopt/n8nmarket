@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PlatformIcon, { hasValidIcon } from '../src/components/PlatformIcon';
 import { Workflow, Category } from '../types';
 import {
@@ -29,10 +30,9 @@ import {
 
 interface WorkflowCardProps {
   workflow: Workflow;
-  onClick: () => void;
 }
 
-const WorkflowCard: React.FC<WorkflowCardProps> = ({ workflow, onClick }) => {
+const WorkflowCard: React.FC<WorkflowCardProps> = ({ workflow }) => {
 
   // Helper to get main icon based on category
   const getCategoryIcon = (cat: Category) => {
@@ -81,7 +81,9 @@ const WorkflowCard: React.FC<WorkflowCardProps> = ({ workflow, onClick }) => {
 
       {/* Title */}
       <h3 className="text-xl font-bold text-slate-900 leading-tight mb-3 line-clamp-2">
-        {workflow.title}
+        <Link to={`/workflow/${workflow.slug}`} className="hover:text-indigo-600 transition-colors">
+          {workflow.title}
+        </Link>
       </h3>
 
       {/* Description */}
@@ -129,12 +131,12 @@ const WorkflowCard: React.FC<WorkflowCardProps> = ({ workflow, onClick }) => {
       </div>
 
       {/* Button */}
-      <button
-        onClick={onClick}
-        className="w-full py-3 rounded-full bg-[#FF6D5A] hover:bg-[#ff5742] text-white font-semibold text-sm transition-colors shadow-[0_4px_14px_rgba(255,109,90,0.3)]"
+      <Link
+        to={`/workflow/${workflow.slug}`}
+        className="w-full py-3 rounded-full bg-[#FF6D5A] hover:bg-[#ff5742] text-white font-semibold text-sm transition-colors shadow-[0_4px_14px_rgba(255,109,90,0.3)] text-center block"
       >
         View workflow
-      </button>
+      </Link>
     </div>
   );
 };

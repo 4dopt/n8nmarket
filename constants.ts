@@ -120,19 +120,34 @@ const mapCategory = (title: string, tags: string[] = []): Category => {
   return Category.PRODUCTIVITY;
 };
 
-export const WORKFLOWS: Workflow[] = (rawWorkflows as any[]).map((w: any) => ({
-  id: w.id,
-  title: cleanTitle(w.title),
-  description: cleanDescription(w.description, cleanTitle(w.title), w.integrations || []),
-  price: w.price || 0,
-  tier: (w.price && w.price > 0) ? PricingTier.PAID : PricingTier.FREE,
-  category: mapCategory(w.title, w.tags),
-  complexity: mapComplexity(w.complexity, getNodeCount(w.nodeOverview)),
-  integrations: w.integrations || [],
-  tags: w.tags || [],
-  featured: w.featured || false,
-  downloads: w.downloads || Math.floor(Math.random() * 1000), // Randomize downloads if 0
-  json: w.json,
-  jsonUrl: w.jsonUrl,
-  nodeOverview: w.nodeOverview
-}));
+
+export const slugify = (text: string): string => {
+  return text
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-')     // Replace spaces with -
+    .replace(/[^\w\-]+/g, '') // Remove all non-word chars
+    .replace(/\-\-+/g, '-');  // Replace multiple - with single -
+};
+
+export const WORKFLOWS: Workflow[] = (rawWorkflows as any[]).map((w: any) => {
+  const cleanTitleValue = cleanTitle(w.title);
+  return {
+    id: w.id,
+    title: cleanTitleValue,
+    slug: slugify(cleanTitleValue),
+    description: cleanDescription(w.description, cleanTitleValue, w.integrations || []),
+    price: w.price || 0,
+    tier: (w.price && w.price > 0) ? PricingTier.PAID : PricingTier.FREE,
+    category: mapCategory(w.title, w.tags),
+    complexity: mapComplexity(w.complexity, getNodeCount(w.nodeOverview)),
+    integrations: w.integrations || [],
+    tags: w.tags || [],
+    featured: w.featured || false,
+    downloads: w.downloads || Math.floor(Math.random() * 1000), // Randomize downloads if 0
+    json: w.json,
+    jsonUrl: w.jsonUrl,
+    nodeOverview: w.nodeOverview
+  };
+});
