@@ -51,11 +51,11 @@ const WorkflowDetailsPage: React.FC<WorkflowDetailsPageProps> = ({ workflow, onB
     };
 
     return (
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-16 overflow-x-hidden">
             {/* Back Button */}
             <button
                 onClick={onBack}
-                className="group flex items-center gap-2 text-slate-500 hover:text-indigo-600 font-medium mb-10 transition-colors"
+                className="group flex items-center gap-2 text-slate-500 hover:text-indigo-600 font-medium mb-6 lg:mb-10 transition-colors"
             >
                 <div className="p-2 bg-white rounded-full border border-slate-200 group-hover:border-indigo-200 shadow-sm transition-colors">
                     <ArrowLeft size={18} />
@@ -80,7 +80,7 @@ const WorkflowDetailsPage: React.FC<WorkflowDetailsPageProps> = ({ workflow, onB
                         </span>
                     </div>
 
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight mb-6 tracking-tight">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight mb-6 tracking-tight break-words hyphens-auto">
                         {workflow.title}
                     </h1>
 
@@ -96,7 +96,7 @@ const WorkflowDetailsPage: React.FC<WorkflowDetailsPageProps> = ({ workflow, onB
                                 Node Overview
                             </h2>
                             <div
-                                className="prose prose-slate bg-white p-6 rounded-2xl border border-slate-200 shadow-sm"
+                                className="prose prose-slate bg-white p-6 rounded-2xl border border-slate-200 shadow-sm w-full max-w-none overflow-x-auto"
                                 dangerouslySetInnerHTML={{ __html: workflow.nodeOverview }}
                             />
                         </div>
@@ -154,24 +154,24 @@ const WorkflowDetailsPage: React.FC<WorkflowDetailsPageProps> = ({ workflow, onB
 
                 {/* 4. JSON Code Section (Full Width, Below Data) */}
                 <div className="space-y-4">
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                         <h3 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
                             <div className="p-2 bg-slate-900 rounded-lg">
                                 <Code size={24} className="text-white" />
                             </div>
                             Workflow Code
                         </h3>
-                        <div className="flex gap-3">
+                        <div className="flex gap-3 w-full sm:w-auto">
                             <button
                                 onClick={handleCopy}
-                                className="hidden sm:flex items-center gap-2 px-4 py-2 bg-white border border-slate-300 hover:border-indigo-600 hover:text-indigo-600 rounded-lg font-medium text-slate-700 transition-all"
+                                className="flex-1 sm:flex-none justify-center flex items-center gap-2 px-4 py-2 bg-white border border-slate-300 hover:border-indigo-600 hover:text-indigo-600 rounded-lg font-medium text-slate-700 transition-all"
                             >
                                 {copied ? <Check size={18} /> : <Copy size={18} />}
                                 {copied ? 'Copied' : 'Copy JSON'}
                             </button>
                             <button
                                 onClick={handleDownload}
-                                className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-all shadow-md shadow-indigo-200"
+                                className="flex-1 sm:flex-none justify-center flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-all shadow-md shadow-indigo-200"
                             >
                                 <Download size={18} />
                                 Download .json
