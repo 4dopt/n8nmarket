@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Filters from './components/Filters';
@@ -169,6 +170,7 @@ const App: React.FC = () => {
         <Navbar onNavigate={handleNavigate} />
         <PricingPage />
         <Footer onNavigate={handleNavigate} />
+        <SpeedInsights />
       </div>
     );
   }
@@ -179,6 +181,7 @@ const App: React.FC = () => {
         <Navbar onNavigate={handleNavigate} />
         <DocumentationPage />
         <Footer onNavigate={handleNavigate} />
+        <SpeedInsights />
       </div>
     );
   }
@@ -194,6 +197,7 @@ const App: React.FC = () => {
             onBack={() => setCurrentView('home')}
           />
           <Footer onNavigate={handleNavigate} />
+          <SpeedInsights />
         </div>
       );
     }
@@ -354,6 +358,7 @@ const App: React.FC = () => {
         </div>
       )}
 
+      <SpeedInsights />
     </div>
   );
 };
