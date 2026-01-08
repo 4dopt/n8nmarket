@@ -200,7 +200,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col font-sans text-slate-900 bg-[#F5F7FF]">
+    <div className="min-h-screen flex flex-col font-sans text-slate-900 bg-[#F5F7FF] w-full overflow-x-hidden">
       <Navbar onNavigate={handleNavigate} />
 
       <Hero

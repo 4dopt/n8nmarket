@@ -104,7 +104,7 @@ const WorkflowDetailsPage: React.FC<WorkflowDetailsPageProps> = ({ workflow, onB
                 </div>
 
                 {/* 2. Stats & Info Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                     <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
                         <div className="flex items-center gap-3 mb-2">
                             <div className="p-2.5 bg-indigo-50 text-indigo-600 rounded-lg">
@@ -142,7 +142,7 @@ const WorkflowDetailsPage: React.FC<WorkflowDetailsPageProps> = ({ workflow, onB
                         <Layers className="text-indigo-600" />
                         Platforms Included
                     </h3>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
                         {workflow.integrations.filter(t => hasValidIcon(t)).map((tool, idx) => (
                             <div key={idx} className="flex flex-col items-center justify-center gap-3 p-4 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-100 transition-colors group">
                                 <PlatformIcon platform={tool} className="w-12 h-12" />
@@ -192,8 +192,8 @@ const WorkflowDetailsPage: React.FC<WorkflowDetailsPageProps> = ({ workflow, onB
                         </div>
 
                         {/* Code Content */}
-                        <div className="relative group">
-                            <pre className="p-6 overflow-x-auto text-sm font-mono text-slate-300 leading-relaxed custom-scrollbar max-h-[600px]">
+                        <div className="relative group w-full max-w-[85vw] sm:max-w-full overflow-hidden">
+                            <pre className="p-6 overflow-x-auto text-sm font-mono text-slate-300 leading-relaxed custom-scrollbar max-h-[600px] whitespace-pre md:whitespace-pre-wrap">
                                 {isLoadingJson ? 'Loading workflow code...' : (jsonContent || '// No JSON code available for this workflow.')}
                             </pre>
                         </div>
