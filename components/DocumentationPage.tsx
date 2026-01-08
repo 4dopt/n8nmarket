@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Book, Code, Settings, AlertCircle, FileJson, ChevronRight, Terminal, Copy, Check } from 'lucide-react';
+import { Book, Code, Settings, AlertCircle, FileJson, ChevronRight, Terminal, Copy, Check, HeartPulse, Code2 } from 'lucide-react';
 
 const DocumentationPage: React.FC = () => {
   const [activeSection, setActiveSection] = useState('getting-started');
@@ -18,7 +18,7 @@ const DocumentationPage: React.FC = () => {
       <div className="bg-[#1d234d] pt-32 pb-20 relative overflow-hidden">
         <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#1d234d] via-[#1a237e] to-[#311b92]"></div>
         <div className="absolute inset-0 z-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
-        
+
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">Documentation</h1>
           <p className="text-indigo-200 text-lg max-w-2xl mx-auto">
@@ -34,30 +34,30 @@ const DocumentationPage: React.FC = () => {
             <div className="sticky top-24">
               <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4">Contents</h3>
               <nav className="space-y-1 border-l border-slate-200 ml-2">
-                <NavItem 
-                  active={activeSection === 'getting-started'} 
-                  onClick={() => scrollToSection('getting-started')} 
-                  label="Getting Started" 
+                <NavItem
+                  active={activeSection === 'getting-started'}
+                  onClick={() => scrollToSection('getting-started')}
+                  label="Getting Started"
                 />
-                <NavItem 
-                  active={activeSection === 'importing'} 
-                  onClick={() => scrollToSection('importing')} 
-                  label="Importing Workflows" 
+                <NavItem
+                  active={activeSection === 'importing'}
+                  onClick={() => scrollToSection('importing')}
+                  label="Importing Workflows"
                 />
-                <NavItem 
-                  active={activeSection === 'credentials'} 
-                  onClick={() => scrollToSection('credentials')} 
-                  label="Setting up Credentials" 
+                <NavItem
+                  active={activeSection === 'credentials'}
+                  onClick={() => scrollToSection('credentials')}
+                  label="Setting up Credentials"
                 />
-                <NavItem 
-                  active={activeSection === 'webhooks'} 
-                  onClick={() => scrollToSection('webhooks')} 
-                  label="Webhooks & Triggers" 
+                <NavItem
+                  active={activeSection === 'webhooks'}
+                  onClick={() => scrollToSection('webhooks')}
+                  label="Webhooks & Triggers"
                 />
-                <NavItem 
-                  active={activeSection === 'troubleshooting'} 
-                  onClick={() => scrollToSection('troubleshooting')} 
-                  label="Troubleshooting" 
+                <NavItem
+                  active={activeSection === 'troubleshooting'}
+                  onClick={() => scrollToSection('troubleshooting')}
+                  label="Troubleshooting"
                 />
               </nav>
 
@@ -85,8 +85,8 @@ const DocumentationPage: React.FC = () => {
               </div>
               <div className="prose prose-slate max-w-none text-slate-600">
                 <p className="mb-4">
-                  Welcome to the n8n Market documentation. Our workflows are designed to be "plug-and-play," 
-                  but a basic understanding of n8n is helpful. 
+                  Welcome to the n8n Market documentation. Our workflows are designed to be "plug-and-play,"
+                  but a basic understanding of n8n is helpful.
                 </p>
                 <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
                   <h3 className="font-bold text-slate-900 mb-3">Prerequisites</h3>
@@ -119,17 +119,17 @@ const DocumentationPage: React.FC = () => {
               <p className="text-slate-600 mb-6">
                 All our workflows are delivered as standard JSON files compatible with n8n.
               </p>
-              
+
               <div className="space-y-6">
-                <Step 
-                  number={1} 
-                  title="Copy the JSON content" 
+                <Step
+                  number={1}
+                  title="Copy the JSON content"
                   description="Open the downloaded .json file in any text editor and copy the entire content."
                 />
-                <Step 
-                  number={2} 
-                  title="Paste into n8n" 
-                  description="Go to your n8n canvas. Simply press Ctrl+V (Cmd+V on Mac) to paste the nodes directly onto the canvas." 
+                <Step
+                  number={2}
+                  title="Paste into n8n"
+                  description="Go to your n8n canvas. Simply press Ctrl+V (Cmd+V on Mac) to paste the nodes directly onto the canvas."
                 />
                 <div className="bg-slate-900 rounded-xl p-4 overflow-x-auto">
                   <div className="flex items-center justify-between text-slate-400 text-xs mb-2 font-mono">
@@ -137,7 +137,7 @@ const DocumentationPage: React.FC = () => {
                     <Copy size={14} className="cursor-pointer hover:text-white" />
                   </div>
                   <pre className="text-green-400 font-mono text-sm">
-{`{
+                    {`{
   "nodes": [
     {
       "parameters": {},
@@ -174,7 +174,7 @@ const DocumentationPage: React.FC = () => {
                 </div>
               </div>
               <p className="text-slate-600 leading-relaxed">
-                After importing a workflow, you will see nodes with red warning icons. This indicates missing credentials. 
+                After importing a workflow, you will see nodes with red warning icons. This indicates missing credentials.
                 Double-click any node (e.g., "Slack"), go to "Credentials", and select "Create New" to enter your API Key.
               </p>
             </section>
@@ -206,6 +206,39 @@ const DocumentationPage: React.FC = () => {
               </div>
             </section>
 
+            {/* Attribution */}
+            <section id="attribution" className="scroll-mt-24">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-2 bg-slate-100 text-slate-600 rounded-lg">
+                  <HeartPulse size={24} />
+                </div>
+                <h2 className="text-2xl font-bold text-slate-900">Credits & Attribution</h2>
+              </div>
+              <p className="text-slate-600 mb-4">
+                We believe in giving credit where credit is due. This marketplace uses open-source assets and data.
+              </p>
+              <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm space-y-4">
+                <div className="flex items-start gap-4">
+                  <img src="https://media.flaticon.com/dist/min/img/logo/flaticon-big.png" alt="Flaticon" className="h-8 opacity-80" />
+                  <div>
+                    <h4 className="font-bold text-slate-900">Icons by Flaticon</h4>
+                    <p className="text-sm text-slate-500">
+                      Many logos and tool icons used in these workflows are provided by <a href="https://www.flaticon.com/" target="_blank" rel="noreferrer" className="text-indigo-600 hover:underline">Flaticon</a>.
+                    </p>
+                  </div>
+                </div>
+                <div className="border-t border-slate-100 pt-4 flex items-start gap-4">
+                  <div className="p-1 bg-slate-800 rounded text-white"><Code2 size={24} /></div>
+                  <div>
+                    <h4 className="font-bold text-slate-900">Lucide Icons</h4>
+                    <p className="text-sm text-slate-500">
+                      UI icons are powered by <a href="https://lucide.dev/" target="_blank" rel="noreferrer" className="text-indigo-600 hover:underline">Lucide React</a>.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
           </main>
         </div>
       </div>
@@ -216,11 +249,10 @@ const DocumentationPage: React.FC = () => {
 const NavItem: React.FC<{ active: boolean; onClick: () => void; label: string }> = ({ active, onClick, label }) => (
   <button
     onClick={onClick}
-    className={`w-full text-left px-4 py-2 text-sm font-medium transition-colors border-l-2 -ml-[1px] ${
-      active 
-        ? 'border-indigo-600 text-indigo-600 bg-indigo-50/50' 
-        : 'border-transparent text-slate-500 hover:text-slate-900 hover:border-slate-300'
-    }`}
+    className={`w-full text-left px-4 py-2 text-sm font-medium transition-colors border-l-2 -ml-[1px] ${active
+      ? 'border-indigo-600 text-indigo-600 bg-indigo-50/50'
+      : 'border-transparent text-slate-500 hover:text-slate-900 hover:border-slate-300'
+      }`}
   >
     {label}
   </button>

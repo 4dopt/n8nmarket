@@ -19,6 +19,10 @@ export enum Category {
   RESEARCH = 'Research & Academia',
   SALES = 'Sales & Outreach',
   SUPPORT = 'Customer Support',
+  MARKETING = 'Marketing',
+  HR = 'HR & Recruiting',
+  DEVOPS = 'DevOps',
+  DATA_ANALYTICS = 'Data & Analytics',
   ECOMMERCE = 'Ecommerce',
   PRODUCTIVITY = 'Productivity & Calendars'
 }
@@ -35,6 +39,9 @@ export interface Workflow {
   tags: string[]; // Added tags for the UI
   featured: boolean;
   downloads: number;
+  json?: string; // n8n workflow JSON
+  jsonUrl?: string; // URL to fetch JSON content
+  nodeOverview?: string; // Pre-generated HTML for SEO node review
 }
 
 export interface FilterState {

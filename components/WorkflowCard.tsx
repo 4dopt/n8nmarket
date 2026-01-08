@@ -1,17 +1,18 @@
 import React from 'react';
+import PlatformIcon, { hasValidIcon } from '../src/components/PlatformIcon';
 import { Workflow, Category } from '../types';
-import { 
-  ArrowDownToLine, 
-  Megaphone, 
-  Briefcase, 
-  Code2, 
-  Settings2, 
-  Headphones, 
-  Bot, 
-  Slack, 
-  Github, 
-  Mail, 
-  Database, 
+import {
+  ArrowDownToLine,
+  Megaphone,
+  Briefcase,
+  Code2,
+  Settings2,
+  Headphones,
+  Bot,
+  Slack,
+  Github,
+  Mail,
+  Database,
   Table2,
   Globe,
   MessageSquare,
@@ -28,10 +29,11 @@ import {
 
 interface WorkflowCardProps {
   workflow: Workflow;
+  onClick: () => void;
 }
 
-const WorkflowCard: React.FC<WorkflowCardProps> = ({ workflow }) => {
-  
+const WorkflowCard: React.FC<WorkflowCardProps> = ({ workflow, onClick }) => {
+
   // Helper to get main icon based on category
   const getCategoryIcon = (cat: Category) => {
     switch (cat) {
@@ -65,7 +67,7 @@ const WorkflowCard: React.FC<WorkflowCardProps> = ({ workflow }) => {
   };
 
   return (
-    <div className="flex flex-col bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-lg transition-shadow duration-300 h-full">
+    <div className="flex flex-col bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-lg transition-shadow duration-300 h-full overflow-hidden">
       {/* Header */}
       <div className="flex justify-between items-start mb-5">
         <div className="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center">
@@ -78,7 +80,7 @@ const WorkflowCard: React.FC<WorkflowCardProps> = ({ workflow }) => {
       </div>
 
       {/* Title */}
-      <h3 className="text-xl font-bold text-slate-900 leading-tight mb-3">
+      <h3 className="text-xl font-bold text-slate-900 leading-tight mb-3 line-clamp-2">
         {workflow.title}
       </h3>
 
@@ -87,26 +89,50 @@ const WorkflowCard: React.FC<WorkflowCardProps> = ({ workflow }) => {
         {workflow.description}
       </p>
 
-      {/* Integrations Row */}
-      <div className="flex items-center gap-3 mb-4">
-        {workflow.integrations.map((tool, idx) => (
-          <div key={idx} className="w-8 h-8 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center" title={tool}>
-            {getIntegrationIcon(tool)}
-          </div>
-        ))}
-      </div>
+      {/* Integrations & Triggers Row */}
+      <div className="flex items-center gap-3 mb-8 overflow-hidden">
+        {/* Tool Icons */}
+        {/* Tool Icons - Limit to 4 */}
+        {workflow.integrations.length > 0 && (
+          <>
+            {workflow.integrations.filter(tool => hasValidIcon(tool)).slice(0, 4).map((tool, idx) => (
+              <div key={idx} className="relative group">
+                <div className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center transition-transform hover:scale-105" title={tool}>
+                  <div className="w-6 h-6 flex items-center justify-center">
+                    <PlatformIcon platform={tool} className="w-full h-full" showTooltip={false} />
+                  </div>
+                </div>
+                {/* Tooltip */}
+                <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-slate-800 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10 pointer-events-none">
+                  {tool}
+                </span>
+              </div>
+            ))}
 
-      {/* Tags Row */}
-      <div className="flex flex-wrap gap-2 mb-8">
-        {workflow.tags.map((tag, idx) => (
-          <span key={idx} className="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">
+            {/* Overflow Badge */}
+            {workflow.integrations.length > 4 && (
+              <div className="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500" title={`+${workflow.integrations.length - 4} more`}>
+                +{workflow.integrations.length - 4}
+              </div>
+            )}
+          </>
+        )}
+
+        {/* text labels for Webhook/Schedule if strictly needed, 
+            but user said "only labels like if webhook is used". 
+            Let's check tags for these specific keywords. */}
+        {workflow.tags.filter(t => ['Webhook', 'Schedule', 'Cron'].includes(t)).map((tag, idx) => (
+          <span key={`tag-${idx}`} className="px-3 py-1.5 bg-indigo-50 text-indigo-600 text-xs font-semibold rounded-lg border border-indigo-100">
             {tag}
           </span>
         ))}
       </div>
 
       {/* Button */}
-      <button className="w-full py-3 rounded-full bg-[#FF6D5A] hover:bg-[#ff5742] text-white font-semibold text-sm transition-colors shadow-[0_4px_14px_rgba(255,109,90,0.3)]">
+      <button
+        onClick={onClick}
+        className="w-full py-3 rounded-full bg-[#FF6D5A] hover:bg-[#ff5742] text-white font-semibold text-sm transition-colors shadow-[0_4px_14px_rgba(255,109,90,0.3)]"
+      >
         View workflow
       </button>
     </div>
